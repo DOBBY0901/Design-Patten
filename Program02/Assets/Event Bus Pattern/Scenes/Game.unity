@@ -1379,7 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1374593015}
-  time: 60
+  time: 5
   minute: 0
   second: 0
   microsecond: 0

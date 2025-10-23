@@ -19,6 +19,7 @@ public class TimeManager : MonoBehaviour
     {
         EventManager.Subscribe(Condition.START, Execute);
         EventManager.Subscribe(Condition.PAUSE, Pause);
+        EventManager.Subscribe(Condition.FINISH, Exit);
     }
     void Execute()
     {
@@ -33,6 +34,13 @@ public class TimeManager : MonoBehaviour
     {
         while (state)
         {
+            if(time <= 0)
+            {
+                EventManager.Publish(Condition.FINISH);
+
+                yield break;
+            }
+
             time -= Time.deltaTime;
 
             minute = (int)time / 60;
@@ -40,9 +48,15 @@ public class TimeManager : MonoBehaviour
             microsecond = (int)(time * 100) % 100;
 
             timeText.text = string.Format("{0:D2} : {1:D2} : {2:D2}",minute, second, microsecond);
-
+            
             yield return null;
         }
+      
+    }
+
+    void Exit()
+    {
+        timeText.text = "Game Over";
 
     }
 
@@ -50,5 +64,6 @@ public class TimeManager : MonoBehaviour
     {
         EventManager.Unsubscribe(Condition.START, Execute);
         EventManager.Unsubscribe(Condition.PAUSE, Pause);
+        EventManager.Unsubscribe(Condition.FINISH, Exit);
     }
 }
