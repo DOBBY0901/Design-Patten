@@ -2,20 +2,16 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
-    [SerializeField] Animation knifeattack;
-    bool animationplay;
-
+    [SerializeField] Animator animator;
+    
 
     private void Awake()
     {
-        knifeattack.GetComponent<Animation>();
+        animator = GetComponent<Animator>();
     }
 
     public override void Attack()
     {
-        if (animationplay)
-        {
-            
-        }
+        animator.SetTrigger("Attack");
     }
 }

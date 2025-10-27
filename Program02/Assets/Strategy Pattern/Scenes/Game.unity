@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 982898919206160789, guid: 04495cef3464e344985b5edc1a75eae1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -301,15 +301,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f5893cb092ca24da3d8713bb97c449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 776423898}
-  basiccolor: {r: 1, g: 1, b: 1, a: 0}
-  changecolor: {r: 0, g: 0, b: 0, a: 0}
-  cooltime: 1
---- !u!23 &776423898 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 5121057217567196926, guid: 1d53015a2cc89714b8b5a612075cfc22, type: 3}
-  m_PrefabInstance: {fileID: 936301110}
-  m_PrefabAsset: {fileID: 0}
+  meshRenderer: {fileID: 0}
+  materials:
+  - {fileID: 2100000, guid: 1ce63b96ebf4a96498fb5f251d495085, type: 2}
+  - {fileID: 2100000, guid: 5d6610a1dc8f4254382abc3d08abbbda, type: 2}
 --- !u!1 &824541241
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912f70e1b1c86f541b28cf41bbe0ce10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knifeattack: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!95 &1254959678
 Animator:
   serializedVersion: 7

@@ -4,39 +4,35 @@ using UnityEngine;
 
 public class Grenade : Weapon
 {
-    [SerializeField] Renderer target;
-    [SerializeField] Color basiccolor;
-    [SerializeField] Color changecolor;
+    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] Coroutine coroutine;
+   
+    [SerializeField] Material[ ] materials;
 
-    [SerializeField] float cooltime;
-    bool iscooltime;
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+
     public override void Attack()
     {
-
-        if (iscooltime)
+        coroutine = StartCoroutine(Activate());
+        
+        if (coroutine == null)
         {
-            Debug.Log("cooltime");
-            return;
-        }
-
-        Debug.Log("Throw Grenade");
-
-        if (!iscooltime)
-        {
-            StartCoroutine(cooltimeroutine());
+            coroutine = StartCoroutine(Activate());
         }
     }
 
-    IEnumerator cooltimeroutine()
+    IEnumerator Activate()
     {
-        iscooltime = true;
-        target.material.color = changecolor;
+        meshRenderer.material = materials[0];
 
-        yield return new WaitForSeconds(cooltime);
+        yield return new WaitForSeconds(3.0f);
 
-        target.material.color = basiccolor;
-        iscooltime=false;
+        meshRenderer.material = materials[1];
 
-        Debug.Log("Cooltime Over");
+        coroutine = null; 
     }
+
 }
