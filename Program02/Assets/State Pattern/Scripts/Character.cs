@@ -1,25 +1,28 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Character : MonoBehaviour
 {
-    [SerializeField] Animator animator;
-   
+    public Animator animator;   
+    [SerializeField] IStateable stateable;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
     }
+    private void Start()
+    {
+        Changestate(new Idle());
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Attack();
-        } 
+        stateable.Update(this);
     }
-
-    public void Attack()
+    public void Changestate(IStateable newstateble)
     {
-        animator.SetTrigger("Attack");
+       stateable?.Exit(this);
+       stateable = newstateble;
+       stateable.Enter(this);
     }
 }
