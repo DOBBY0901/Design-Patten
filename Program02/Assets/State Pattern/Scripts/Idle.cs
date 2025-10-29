@@ -20,8 +20,11 @@ public class Idle : IStateable
         {
             character.Changestate(new Attack());
         }
+        int x = (int)Input.GetAxisRaw("Horizontal");
+        int y = (int)Input.GetAxisRaw("Vertical");
 
-        if(Mathf.Abs(Input.GetAxisRaw("Horizontal")) > 0 || Mathf.Abs(Input.GetAxisRaw("Vertical")) > 0)
+
+        if ((x > 0) || (y > 0))
         {
             character.Changestate(new Walk());
         }

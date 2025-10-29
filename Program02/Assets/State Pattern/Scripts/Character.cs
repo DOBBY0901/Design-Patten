@@ -12,7 +12,7 @@ public class Character : MonoBehaviour
     }
     private void Start()
     {
-        Changestate(new Idle());
+        stateable = new Idle();
     }
 
     private void Update()
