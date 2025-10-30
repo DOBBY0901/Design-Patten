@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class CreateManager : MonoBehaviour
 {
-    [SerializeField] GameObject gameobject;
-    [SerializeField] float createtime;
+    [SerializeField] GameObject prefab;
+    [SerializeField] Transform createPostion;
+    
+
 
    
     void Start()
@@ -16,8 +18,12 @@ public class CreateManager : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(gameobject, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(createtime);
+            yield return CoroutineManager.GetCachedWait(Random.Range(1, 6));
+
+            
+            Instantiate(prefab, createPostion.position, prefab.transform.rotation);
+
+            
         }
     }
 }
