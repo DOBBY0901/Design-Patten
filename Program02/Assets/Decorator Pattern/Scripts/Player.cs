@@ -4,11 +4,16 @@ public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float stopDistance = 0.1f;
+    [SerializeField] float rotationspeed = 50f;
 
-    [SerializeField] bool isMonving = false;
+    [SerializeField] bool isMoving = false;
     [SerializeField] Vector3 targetPostion;
     [SerializeField] RaycastHit rayCasthit;
 
+    private void Awake()
+    {
+        
+    }
     private void Start()
     {
         targetPostion = transform.position;
@@ -24,13 +29,13 @@ public class Player : MonoBehaviour
             {
                 targetPostion = rayCasthit.point;
 
-                isMonving = true;
+                isMoving = true;
             }
 
             
         }
         
-        if (isMonving)
+        if (isMoving)
         {
             Move();
         }
@@ -41,16 +46,22 @@ public class Player : MonoBehaviour
    void Move()
     { 
         Vector3 direction = (targetPostion - transform.position);
-
+        
+        direction.y = 0;    
+        
         float distance = Vector3.Distance(transform.position, targetPostion);
 
         transform.position += direction * speed * Time.deltaTime;
 
         if(distance < stopDistance) 
         {
-            isMonving = true;    
+            isMoving = false; 
+            
+            
         }
+
     }
 
+    
 }
     

@@ -1,19 +1,16 @@
 using UnityEngine;
 
-public class FearEffect : IStatus
+public class FearEffect : Decorator
 {
-    void IStatus.Apply()
+    public FearEffect(IStatus status) : base(status)
     {
-        throw new System.NotImplementedException();
+
     }
 
-    void Start()
+    public override void Update()
     {
-        Debug.Log("Fear!");
-    }
+        base.Update();
 
-    void IStatus.Update()
-    {
-        throw new System.NotImplementedException();
+        Debug.Log("공포 상태");
     }
 }

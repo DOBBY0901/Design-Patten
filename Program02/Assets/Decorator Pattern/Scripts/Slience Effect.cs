@@ -1,19 +1,16 @@
 using UnityEngine;
 
-public class SlienceEffect : IStatus
+public class SlienceEffect : Decorator
 {
-    void IStatus.Apply()
+    public SlienceEffect(IStatus status) : base(status)
     {
-        throw new System.NotImplementedException();
+        
     }
 
-    void Start()
+    public override void Update()
     {
-        Debug.Log("Slience!");
-    }
+        base.Update();
 
-    void IStatus.Update()
-    {
-        throw new System.NotImplementedException();
+        Debug.Log("Ä§¹¬ »óÅÂ");
     }
 }

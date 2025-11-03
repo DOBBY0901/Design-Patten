@@ -1,19 +1,17 @@
 using UnityEngine;
 
-public class SlowEffect : IStatus
+public class SlowEffect : Decorator
 {
-    void IStatus.Apply()
+    public SlowEffect(IStatus status) : base(status)
     {
-        throw new System.NotImplementedException();
+
     }
 
-    void Start()
+    public override void Update()
     {
-        Debug.Log("Slow!");
-    }
+        base.Update();
 
-    void IStatus.Update()
-    {
-        throw new System.NotImplementedException();
+        Debug.Log("µÐÈ­ »óÅÂ");
     }
 }
+
