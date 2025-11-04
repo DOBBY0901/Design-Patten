@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class SlowEffect : Decorator
 {
-    public SlowEffect(IStatus status) : base(status)
+    [SerializeField] float slowspeed;
+  
+    public override void Acivate()
     {
-
-    }
-
-    public override void Update()
-    {
-        base.Update();
+        debuff.Acivate();
 
         Debug.Log("µÐÈ­ »óÅÂ");
     }
+
 }
 

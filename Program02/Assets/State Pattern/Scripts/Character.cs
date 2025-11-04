@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Character : Debuff
 {
     public Animator animator;   
     [SerializeField] IStateable stateable;
@@ -24,5 +24,10 @@ public class Character : MonoBehaviour
        stateable?.Exit(this);
        stateable = newstateble;
        stateable.Enter(this);
+    }
+
+    public override void Acivate()
+    {
+        Debug.Log("Character");
     }
 }

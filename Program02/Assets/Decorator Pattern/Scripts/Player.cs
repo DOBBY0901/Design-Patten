@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player :Debuff
 {
     [SerializeField] float speed;
     [SerializeField] float stopDistance = 0.1f;
@@ -10,9 +10,10 @@ public class Player : MonoBehaviour
     [SerializeField] Vector3 targetPostion;
     [SerializeField] RaycastHit rayCasthit;
 
+    [SerializeField] Rigidbody rigidbody;
     private void Awake()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
     private void Start()
     {
@@ -35,33 +36,49 @@ public class Player : MonoBehaviour
             
         }
         
+      
+    }
+
+    private void FixedUpdate()
+    {
         if (isMoving)
         {
             Move();
         }
     }
 
-  
-
-   void Move()
+    void Move()
     { 
         Vector3 direction = (targetPostion - transform.position);
         
         direction.y = 0;    
         
-        float distance = Vector3.Distance(transform.position, targetPostion);
-
-        transform.position += direction * speed * Time.deltaTime;
+        float distance = direction.magnitude;
 
         if(distance < stopDistance) 
         {
             isMoving = false; 
             
-            
+            rigidbody.linearVelocity = Vector3.zero;
+
+            return;
         }
+
+        Vector3 newPosition = rigidbody.position + direction.normalized * speed * Time.fixedDeltaTime;
+
+        rigidbody.MovePosition(newPosition);
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        Quaternion smoothRotation = Quaternion.Slerp(rigidbody.rotation, targetRotation, rotationspeed * Time.fixedDeltaTime);
+
+        rigidbody.MoveRotation(smoothRotation);
 
     }
 
-    
+    public override void Acivate()
+    {
+        Debug.Log("Player");
+    }
 }
     
