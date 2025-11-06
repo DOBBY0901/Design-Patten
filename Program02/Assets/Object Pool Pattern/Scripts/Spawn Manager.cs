@@ -4,7 +4,7 @@ using UnityEngine.SocialPlatforms.GameCenter;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] GameObject gameobject;
+    
     [SerializeField] WaitForSeconds waitForSeconds;
     [SerializeField] float radius;
 
@@ -22,14 +22,13 @@ public class SpawnManager : MonoBehaviour
     {
         while (true)
         {
-            GameObject bee = Instantiate(gameobject);
+            GameObject bee = ObjectPool.Instance.GetObject();
 
             Vector2 direction = Random.insideUnitCircle.normalized * radius;
 
             bee.transform.position = new Vector3(direction.x, 0, direction.y);
 
             yield return waitForSeconds;
-
         }
         
     }

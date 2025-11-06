@@ -7,24 +7,28 @@ public class Bee : MonoBehaviour
     [SerializeField] Transform targetTransform;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     { 
         targetTransform = GameObject.Find("Sand Pillar").transform;
-        
-        direcition =transform.position - targetTransform.position;
 
-        transform.LookAt(direcition);
+        transform.LookAt(targetTransform);
+
+        direcition = (targetTransform.position - transform.position).normalized;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direcition * speed * Time.deltaTime);
+        transform.Translate(direcition * speed * Time.deltaTime, Space.World);
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Pillar"))
+        {
+            ObjectPool.Instance.ReturnObject(gameObject);
+        }
     }
 }
