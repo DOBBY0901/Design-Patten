@@ -6,7 +6,7 @@ public class ObjectPool : MonoBehaviour
    [SerializeField] int createcount = 5;
 
    private static ObjectPool instance;
-   public static ObjectPool Instance { get; }
+   public static ObjectPool Instance { get { return instance; } }
 
    [SerializeField] Queue<GameObject> queue = new Queue<GameObject>();
     

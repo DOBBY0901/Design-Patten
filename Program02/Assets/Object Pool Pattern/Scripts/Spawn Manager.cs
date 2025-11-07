@@ -28,6 +28,8 @@ public class SpawnManager : MonoBehaviour
 
             bee.transform.position = new Vector3(direction.x, 0, direction.y);
 
+            bee.GetComponent<Bee>().SetDirection(bee.transform);
+
             yield return waitForSeconds;
         }
         

@@ -5,13 +5,19 @@ public class Bee : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Vector3 direcition;
     [SerializeField] Transform targetTransform;
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void OnEnable()
-    { 
-        targetTransform = GameObject.Find("Sand Pillar").transform;
 
+
+
+    private void Awake()
+    {
+        targetTransform = GameObject.Find("Sand Pillar").transform;
+    }
+
+    public void SetDirection(Transform createTransform)
+    {
         transform.LookAt(targetTransform);
+
+        transform.position = createTransform.position;
 
         direcition = (targetTransform.position - transform.position).normalized;
 
