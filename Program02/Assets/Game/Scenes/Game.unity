@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1420854029}
   heartText: {fileID: 1600532730}
-  gameoverText: {fileID: 1336123524}
+  gameoverPanel: {fileID: 1336123522}
   score: 0
   startheart: 3
 --- !u!1 &2086684854

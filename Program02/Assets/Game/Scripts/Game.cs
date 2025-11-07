@@ -8,7 +8,7 @@ public class Game : MonoBehaviour
 
     [SerializeField] Text scoreText;
     [SerializeField] Text heartText;
-    [SerializeField] Text gameoverText;
+    [SerializeField] GameObject gameoverPanel;
 
     [SerializeField] int score = 0;
 
@@ -32,6 +32,11 @@ public class Game : MonoBehaviour
         UpdateScoreUI();
         UpdateHeartUI();
 
+        if(gameoverPanel != null)
+        {
+           gameoverPanel.SetActive(false);
+        }
+
     }
 
     public void AddScore(int scorecount)
@@ -48,7 +53,7 @@ public class Game : MonoBehaviour
         if (heart <= 0)
         {
             GameOver();
-            UpdateGameOverUI(); 
+            
         }
     }
 
@@ -57,7 +62,10 @@ public class Game : MonoBehaviour
         isGameover = true;
         Time.timeScale = 0;
        
-        Debug.Log("GAME OVER");
+        if (gameoverPanel != null)
+        {
+            gameoverPanel.SetActive(true);
+        }
 
     }
 
@@ -71,8 +79,5 @@ public class Game : MonoBehaviour
         heartText.text = "¸ñ¼û : " + heart;
     }
 
-    void UpdateGameOverUI()
-    {
-        gameoverText.text = "GAME OVER";
-    }
+   
 }
